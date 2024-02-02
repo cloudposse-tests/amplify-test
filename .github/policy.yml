@@ -22,6 +22,7 @@ approval_rules:
       users: 
       - osterman
       - aknysh
+      - Nuru
     options:
       invalidate_on_push: true
   - name: approve_by_repo_writer
