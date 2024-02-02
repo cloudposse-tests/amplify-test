@@ -27,6 +27,6 @@ approval_rules:
   - name: approve_by_repo_writer
     requires:
       count: 1
-      write_collaborators: true
+      permissions: ["write"]
     options:
       invalidate_on_push: true
