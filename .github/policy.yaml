@@ -1,0 +1,26 @@
+# High level policy
+policy:
+  approval:
+    - or:
+        - dependency update by Renovate
+        - change by a cloudposse
+        - change by a repo writer
+
+# Definition of rules
+approval_rules:
+  - name: dependency update by Renovate
+    if:
+      only_has_contributors_in:
+        users: [ "renovate" ]
+    requires:
+      count: 0
+  - name: change by a cloudposse
+    if:
+      only_has_contributors_in:
+        organizations: [ "cloudposse" ]
+    requires:
+      count: 1
+  - name: change by a repo writer
+    requires:
+      count: 1
+      write_collaborators: true
