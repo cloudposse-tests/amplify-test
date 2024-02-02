@@ -1,27 +1,32 @@
-# High level policy
+# Policy
 policy:
   approval:
     - or:
-        - dependency update by Renovate
-        - change by a cloudposse
-        - change by a repo writer
-        - change by a repo writer
+        - auto_approve_renovate
+        - approve_by_whitelisted_user
+        - approve_by_repo_writer
 
-# Definition of rules
+# Rules
 approval_rules:
-  - name: dependency update by Renovate
+  - name: auto_approve_renovate
     if:
       only_has_contributors_in:
         users: [ "renovate" ]
     requires:
       count: 0
-  - name: change by a cloudposse
-    if:
-      only_has_contributors_in:
-        organizations: [ "cloudposse" ]
+    options:
+      invalidate_on_push: true
+  - name: approve_by_whitelisted_user
     requires:
       count: 1
-  - name: change by a repo writer
+      users: 
+      - osterman
+      - aknysh
+    options:
+      invalidate_on_push: true
+  - name: approve_by_repo_writer
     requires:
       count: 1
       write_collaborators: true
+    options:
+      invalidate_on_push: true
